@@ -14,13 +14,10 @@
                                         <a href="index.hml">Home</a></li>
                                     <li class="has-separator">
 
-                                        <a href="shop-side-version-2.html">Electronics</a></li>
-                                    <li class="has-separator">
-
-                                        <a href="shop-side-version-2.html">DSLR Cameras</a></li>
-                                    <li class="is-marked">
-
-                                        <a href="shop-side-version-2.html">Nikon Cameras</a></li>
+                                        <a href="shop-side-version-2.html"> @foreach ($product->categories as $category)
+                                            {{ strtoupper( $category->name ) }}
+                                @endforeach</a></li>
+                                  
                                 </ul>
                             </div>
                             <!--====== End - Product Breadcrumb ======-->
@@ -30,21 +27,18 @@
                             <div class="pd u-s-m-b-30">
                                 <div class="slider-fouc pd-wrap">
                                     <div id="pd-o-initiate">
-                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-1.jpg">
+                                        <div class="pd-o-img-wrap" data-src="@if(count($product->images)>0)
+                                            {{$product->images[0]->url}}
+                                            @else
+                                            https://via.placeholder.com/200x200.png?text=no+hay+imagenes
+                                            @endif">
 
-                                            <img class="u-img-fluid" src="images/product/product-d-1.jpg" data-zoom-image="images/product/product-d-1.jpg" alt=""></div>
-                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-2.jpg">
-
-                                            <img class="u-img-fluid" src="images/product/product-d-2.jpg" data-zoom-image="images/product/product-d-2.jpg" alt=""></div>
-                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-3.jpg">
-
-                                            <img class="u-img-fluid" src="images/product/product-d-3.jpg" data-zoom-image="images/product/product-d-3.jpg" alt=""></div>
-                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-4.jpg">
-
-                                            <img class="u-img-fluid" src="images/product/product-d-4.jpg" data-zoom-image="images/product/product-d-4.jpg" alt=""></div>
-                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-5.jpg">
-
-                                            <img class="u-img-fluid" src="images/product/product-d-5.jpg" data-zoom-image="images/product/product-d-5.jpg" alt=""></div>
+                                            <img class="u-img-fluid" src="@if(count($product->images)>0)
+                                            {{$product->images[0]->url}}
+                                            @else
+                                            https://via.placeholder.com/200x200.png?text=no+hay+imagenes
+                                            @endif" data-zoom-image="images/product/product-d-1.jpg" alt=""></div>
+                                        
                                     </div>
 
                                     <span class="pd-text">Click for larger zoom</span>
@@ -54,19 +48,8 @@
                                         <div id="pd-o-thumbnail">
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt=""></div>
-                                            <div>
-
-                                                <img class="u-img-fluid" src="images/product/product-d-2.jpg" alt=""></div>
-                                            <div>
-
-                                                <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt=""></div>
-                                            <div>
-
-                                                <img class="u-img-fluid" src="images/product/product-d-4.jpg" alt=""></div>
-                                            <div>
-
-                                                <img class="u-img-fluid" src="images/product/product-d-5.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="{{$product->images}} " alt=""></div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -79,25 +62,25 @@
                             <div class="pd-detail">
                                 <div>
 
-                                    <span class="pd-detail__name">Nikon Camera 4k Lens Zoom Pro</span></div>
+                                    <span class="pd-detail__name">{{$product->name}}</span></div>
                                 <div>
                                     <div class="pd-detail__inline">
 
-                                        <span class="pd-detail__price">$6.99</span>
+                                        <span class="pd-detail__price">{{ number_format( $product->price)}}</span>
 
-                                        <span class="pd-detail__discount">(76% OFF)</span><del class="pd-detail__del">$28.97</del></div>
+                                        <span class="pd-detail__discount">({{$product->discount}}% OFF)</span><del class="pd-detail__del">{{($product->price*$product->discount/100)+$product->price}}</del></div>
                                 </div>
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
 
                                         <span class="pd-detail__review u-s-m-l-4">
 
-                                            <a data-click-scroll="#view-review">23 Reviews</a></span></div>
+                                            <a data-click-scroll="#view-review">{{$product->review}} Reviews</a></span></div>
                                 </div>
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__inline">
 
-                                        <span class="pd-detail__stock">200 in stock</span>
+                                        <span class="pd-detail__stock">{{$product->stock}} in stock</span>
 
                                         <span class="pd-detail__left">Only 2 left</span></div>
                                 </div>
@@ -202,7 +185,7 @@
 
                                             <a class="nav-link" id="view-review" data-toggle="tab" href="#pd-rev">REVIEWS
 
-                                                <span>(23)</span></a></li>
+                                                <span> {{$product->review}} </span></a></li>
                                     </ul>
                                 </div>
                                 <div class="tab-content">
@@ -213,7 +196,7 @@
                                             <div class="u-s-m-b-15">
                                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                                             </div>
-                                            <div class="u-s-m-b-30"><iframe src="https://www.youtube.com/embed/qKqSBm07KZk" allowfullscreen></iframe></div>
+                                            <div class="u-s-m-b-30"><iframe src=" {{$product->urlvideo}} " allowfullscreen></iframe></div>
                                             <div class="u-s-m-b-30">
                                                 <ul>
                                                     <li><i class="fas fa-check u-s-m-r-8"></i>
@@ -303,7 +286,7 @@
                                             <div class="u-s-m-b-30">
                                                 <div class="pd-tab__rev-score">
                                                     <div class="u-s-m-b-8">
-                                                        <h2>23 Reviews - 4.6 (Overall)</h2>
+                                                        <h2> {{$product->review}} Reviews - 4.6 (Overall)</h2>
                                                     </div>
                                                     <div class="gl-rating-style-2 u-s-m-b-8"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
                                                     <div class="u-s-m-b-8">

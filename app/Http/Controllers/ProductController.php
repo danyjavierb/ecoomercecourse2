@@ -27,7 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view ('components/products.create',compact('categories'));
     }
 
     /**
@@ -38,7 +39,43 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dataProductoForm = $request->validate([
+            'name' => ['string', 'required'],
+            'description' => ['string', 'required'],
+            'price' => ['numeric','required'],
+            'stock' => ['numeric','required'],
+            'categories' => ['required'],
+            'available' => ['nullable']
+        ]);
+
+        $newProduct = new Product();
+        $newProduct->name = $dataProductoForm['name'];
+        $newProduct->description = $dataProductoForm['description'];
+        $newProduct->price = $dataProductoForm['price'];
+        //$newProduct->stock = $dataProductoForm['stock'];
+        isset($dataProductoForm['available']) ? $newProduct->available = true : $newProduct->available = false;
+
+        $newProduct ->save();
+
+        //la facil
+        // foreach ($dataProductoForm['categories'] as $category) {
+        //    new  products_has_categories
+        //    ->product_id =  $newProduct -> id;
+        //    ->category_id = $category->id 
+        // }
+
+        // la pro
+        // queda de tarea de consulta
+
+        //mostrar pocos productos en el index 
+
+        // cuando se de click en load more
+        //shop-grid-left.html (1)
+        // subir imagenes de producto (2)
+
+      
+
+
     }
 
     /**
@@ -56,7 +93,6 @@ class ProductController extends Controller
         // video
         // discount
 
-       
         return view('components/products.show',compact('product'));
     }
 
