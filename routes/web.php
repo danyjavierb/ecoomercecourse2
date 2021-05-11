@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
@@ -37,3 +38,4 @@ use App\Http\Controllers\ProductController;
 
 
 Route::resource('products', ProductController::class);
+Route::resource('cart', CartController::class);
