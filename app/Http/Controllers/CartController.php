@@ -58,6 +58,13 @@ class CartController extends Controller
         return redirect()->route('cart.index');
     }
 
+
+    public function addOne(Product $product)
+    {
+       
+        dd($product);
+    }
+
     /**
      * Display the specified resource.
      *

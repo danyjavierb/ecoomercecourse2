@@ -39,3 +39,4 @@ use App\Http\Controllers\ProductController;
 
 Route::resource('products', ProductController::class);
 Route::resource('cart', CartController::class);
+Route::get('cart/addOne/{product}', [CartController::class, 'addOne'])->name('cart.addOne');
