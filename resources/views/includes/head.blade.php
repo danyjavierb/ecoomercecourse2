@@ -6,6 +6,7 @@
     <link href="images/favicon.png" rel="shortcut icon">
     <title>Mi Tiendita - Electronics, Apparel, Computers, Books, DVDs & more</title>
 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!--====== Google Font ======-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
 
@@ -16,4 +17,5 @@
     <link rel="stylesheet" href="{{asset('css/utility.css')}}">
 
     <!--====== App ======-->
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/ludus.css')}}">
+
