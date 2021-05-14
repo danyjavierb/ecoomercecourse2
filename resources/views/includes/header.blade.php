@@ -100,9 +100,13 @@
 
                                     <li>
 
-                                        <a href="{{ route('logout') }}"><i class="fas fa-lock-open u-s-m-r-6"></i>
-
-                                            <span>Signout</span></a>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                        <i class="fas fa-lock-open u-s-m-r-6"></i>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
                                     </li>
                                 @else
 
