@@ -5,9 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+
+    /**
+     * al principio de todo conmtrollador se agregan los middlewares
+     * 
+     * 
+     */
+
+     public function __construct()
+     {
+        
+        $this -> middleware(['product.available','auth'])->only(['show']);
+
+     }
+
+
     /**
      * Display a listing of the resource.
      *

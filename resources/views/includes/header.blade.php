@@ -29,6 +29,16 @@
 
 @endif
 
+@if (session()->has('error'))
+
+    <div class="w3-panel w3-pale-red w3-border">
+        <h3>Error!</h3>
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <p>{{ session()->get('error') }}</p>
+    </div>
+
+@endif
+
 
 <nav class="primary-nav primary-nav-wrapper--border">
     <div class="container">
@@ -80,39 +90,39 @@
                             <span class="js-menu-toggle"></span>
                             <ul style="width:120px">
 
-                                @if (Auth::check())
-                                <li>
+                                @auth
+                                    <li>
 
-                                    <a href="dashboard.html"><i class="fas fa-user-circle u-s-m-r-6"></i>
+                                        <a href="dashboard.html"><i class="fas fa-user-circle u-s-m-r-6"></i>
 
-                                        <span>{{ Auth::user()->name }}</span></a>
-                                </li>
+                                            <span>{{ Auth::user()->name }}</span></a>
+                                    </li>
 
-                                <li>
+                                    <li>
 
-                                    <a href="{{ route('logout')}}"><i class="fas fa-lock-open u-s-m-r-6"></i>
+                                        <a href="{{ route('logout') }}"><i class="fas fa-lock-open u-s-m-r-6"></i>
 
-                                        <span>Signout</span></a>
-                                </li>
+                                            <span>Signout</span></a>
+                                    </li>
                                 @else
 
-                                 
-                                <li>
 
-                                    <a href="{{ route ('register')}}"><i class="fas fa-user-plus u-s-m-r-6"></i>
+                                    <li>
 
-                                        <span>Signup</span></a>
-                                </li>
-                                <li>
+                                        <a href="{{ route('register') }}"><i class="fas fa-user-plus u-s-m-r-6"></i>
 
-                                    <a href="{{ route ('login')}}"><i class="fas fa-lock u-s-m-r-6"></i>
+                                            <span>Signup</span></a>
+                                    </li>
+                                    <li>
 
-                                        <span>Signin</span></a>
-                                </li>
-                                    
-                                @endif
-                               
-                               
+                                        <a href="{{ route('login') }}"><i class="fas fa-lock u-s-m-r-6"></i>
+
+                                            <span>Signin</span></a>
+                                    </li>
+
+                                @endauth
+
+
                             </ul>
                             <!--====== End - Dropdown ======-->
                         </li>
